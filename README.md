@@ -55,6 +55,41 @@ b.add('./index.js');
 b.bundle().pipe(require('fs').createWriteStream('bundle.js'));
 ```
 
+# Usage example with `es6ify`
+
+## somelib.js
+
+```javascript
+export const BAR = "Hello World!";
+export class Foo {
+    greet() {
+        console.log(BAR);
+    }
+}
+```
+
+## index.js
+
+```javascript
+var {Foo} = require('./somelib.js');
+(new Foo()).greet(); // "Hello World!"
+```
+
+## Usage
+
+```javascript
+var browserify = require('browserify'),
+    siportify = require('sixportify'),
+    es6ify = require('es6ify'),
+    b = browserify();
+
+b.transform(sixportify); // should always come before es6ify
+b.add(es6ify.runtime);
+b.transform(es6ify);
+b.add('./index.js');
+b.bundle().pipe(require('fs').createWriteStream('bundle.js'));
+```
+
 # Caveats
 
 The implementation is incredibly naïve.
