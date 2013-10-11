@@ -60,7 +60,7 @@ b.bundle().pipe(require('fs').createWriteStream('bundle.js'));
 ## somelib.js
 
 ```javascript
-export const BAR = "Hello World!";
+const BAR = "Hello World!";
 export class Foo {
     greet() {
         console.log(BAR);
@@ -141,7 +141,7 @@ foo.greet(); // "sup"
 ```
 
 Generators (`function*`) as well as variables declared with `let` or `const`
-are fully supported too.
+are fully supported too (even though the latter two shouldn't really be exportable according to harmony -- if the runtime supports it, `sixportify` won't judge you).
 
 This means you can use sixportify to preprocess your ES6-style exports for [es6ify](https://github.com/thlorenz/es6ify).
 
