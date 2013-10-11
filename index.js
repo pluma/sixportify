@@ -1,4 +1,4 @@
-/*! sixportify 0.3.0 Copyright (c) 2013 Alan Plum. MIT licensed. */
+/*! sixportify 0.3.0 */
 var through = require('through');
 var re = /^\s*export\s+(?:var|let|const|class|function\*?)\s([_a-zA-Z]\w*)[^\w]/;
 

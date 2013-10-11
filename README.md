@@ -177,4 +177,4 @@ export var [qux] = arr;
 
 # License
 
-The MIT/Expat license.
+This library has been released into the Public Domain and is distributed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/).
