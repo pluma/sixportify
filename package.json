@@ -4,7 +4,10 @@
   "version": "0.3.0",
   "license": "CC0",
   "licenses": [
-    {"type": "CC0", "url": "http://creativecommons.org/publicdomain/zero/1.0/"}
+    {
+      "type": "CC0",
+      "url": "http://creativecommons.org/publicdomain/zero/1.0/"
+    }
   ],
   "description": "A browserify transform for ES-harmony-style module exports.",
   "keywords": [
