@@ -1,6 +1,6 @@
 # Synopsis
 
-**sixportify** is a [browserify](https://github.com/substack/node-browserify) transform that enables you to write CommonJS module exports as if you were using ES6 (also known as [harmony](http://wiki.ecmascript.org/doku.php?id=harmony:modules)).
+**sixportify** is a [browserify](https://github.com/substack/node-browserify) transform that enables you to write CommonJS module exports [as if you were using ES6](http://wiki.ecmascript.org/doku.php?id=harmony:modules) (also known as harmony).
 
 [![NPM version](https://badge.fury.io/js/sixportify.png)](http://badge.fury.io/js/sixportify) [![Dependencies](https://david-dm.org/pluma/sixportify.png)](https://david-dm.org/pluma/sixportify)
 
