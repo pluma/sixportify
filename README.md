@@ -87,7 +87,7 @@ somelib.foo = 'world'; // re-assigns the exported var
 somelib.greet(); // "Hello bar!"
 ```
 
-# ES6/harmony and Classes
+# ES6/harmony, let, const, generators and classes
 
 If you want to use `sixportify` with ES6-style classes, you can do that:
 
@@ -104,6 +104,9 @@ var Foo = require('./somelib.es6').Foo;
 var foo = new Foo();
 foo.greet(); // "sup"
 ```
+
+Generators (`function*`) as well as variables declared with `let` or `const`
+are fully supported too.
 
 This means you can use sixportify to preprocess your ES6-style exports for [es6ify](https://github.com/thlorenz/es6ify).
 
