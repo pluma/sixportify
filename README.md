@@ -93,6 +93,26 @@ b.bundle().pipe(require('fs').createWriteStream('bundle.js'));
 
 The implementation is incredibly naïve.
 
+If your export statements are not at the beginning of the line (optionally indented with any whitespace character), `sixportify` won't find them:
+
+```javascript
+// This won't work.
+var foo = 'bar'; export var baz = 'qux';
+
+// This won't work either.
+export var
+    foo = 'bar';
+
+// Nor will this.
+export var foo = 'bar',
+    qux = 'baz'; // `qux` will not be exported!
+
+// This is fine, though:
+export var foo = {
+    'bar': 'qux'
+};
+```
+
 While `sixportify` works just fine with variable declarations,
 keep in mind that re-assignment may have unintended consequences. E.g.
 
