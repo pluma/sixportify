@@ -20,7 +20,6 @@ npm install sixportify
 git clone https://github.com/pluma/sixportify.git
 cd sixportify
 npm install
-make test
 ```
 
 # Basic usage example
