@@ -1,0 +1,29 @@
+{
+  "name": "sixportify",
+  "author": "Alan Plum <me@pluma.io>",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "A browserify transform for ES-harmony-style module exports.",
+  "keywords": [
+    "browserify",
+    "transform",
+    "modules",
+    "exports",
+    "harmoney",
+    "es6"
+  ],
+  "main": "./index.js",
+  "dependencies": {
+    "through": "2.x"
+  },
+  "devDependencies": {
+    "jshint": "2.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pluma/sixportify.git"
+  },
+  "engines": {
+    "node": ">=0.6"
+  }
+}
