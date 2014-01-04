@@ -1,14 +1,11 @@
 {
   "name": "sixportify",
   "author": "Alan Plum <me@pluma.io>",
-  "version": "0.3.0",
-  "license": "CC0",
-  "licenses": [
-    {
-      "type": "CC0",
-      "url": "http://creativecommons.org/publicdomain/zero/1.0/"
-    }
-  ],
+  "version": "0.3.1",
+  "licenses": {
+    "type": "UNLICENSE",
+    "url": "https://github.com/pluma/sixportify/blob/master/UNLICENSE"
+  },
   "description": "A browserify transform for ES-harmony-style module exports.",
   "keywords": [
     "browserify",
@@ -20,10 +17,10 @@
   ],
   "main": "./index.js",
   "dependencies": {
-    "through": "2.x"
+    "through": "~2.3"
   },
   "devDependencies": {
-    "jshint": "2.x"
+    "jshint": "~2.4"
   },
   "repository": {
     "type": "git",

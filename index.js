@@ -1,4 +1,4 @@
-/*! sixportify 0.3.0 */
+/*! sixportify 0.3.1 Original author Alan Plum <me@pluma.io>. Released into the Public Domain under the UNLICENSE. @preserve */
 var through = require('through');
 var re = /^\s*export\s+(?:var|let|const|class|function\*?)\s([_a-zA-Z]\w*)[^\w]/;
 

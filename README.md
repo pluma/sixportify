@@ -175,6 +175,6 @@ var arr = ['hello'];
 export var [qux] = arr;
 ```
 
-# License
+# Unlicense
 
-This library has been released into the Public Domain and is distributed under [CC0](http://creativecommons.org/publicdomain/zero/1.0/).
+This is free and unencumbered public domain software. For more information, see http://unlicense.org/ or the accompanying [UNLICENSE](https://github.com/pluma/sixportify/blob/master/UNLICENSE) file.
