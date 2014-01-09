@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="sixportify : ES-harmony-style module exports" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>sixportify</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/pluma/sixportify">View on GitHub</a>
+
+          <h1 id="project_title">sixportify</h1>
+          <h2 id="project_tagline">ES-harmony-style module exports</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/pluma/sixportify/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/pluma/sixportify/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="synopsis" class="anchor" href="#synopsis"><span class="octicon octicon-link"></span></a>Synopsis</h1>
+
+<p><strong>sixportify</strong> is a <a href="https://github.com/substack/node-browserify">browserify</a> transform that enables you to write CommonJS module exports <a href="http://wiki.ecmascript.org/doku.php?id=harmony:modules">as if you were using ES6</a> (also known as harmony).</p>
+
+<p><a href="http://badge.fury.io/js/sixportify"><img src="https://badge.fury.io/js/sixportify.png" alt="NPM version"></a> <a href="https://david-dm.org/pluma/sixportify"><img src="https://david-dm.org/pluma/sixportify.png" alt="Dependencies"></a></p>
+
+<h1>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h1>
+
+<h2>
+<a name="nodejs" class="anchor" href="#nodejs"><span class="octicon octicon-link"></span></a>Node.js</h2>
+
+<h3>
+<a name="with-npm" class="anchor" href="#with-npm"><span class="octicon octicon-link"></span></a>With NPM</h3>
+
+<div class="highlight highlight-sh"><pre>npm install sixportify
+</pre></div>
+
+<h3>
+<a name="from-source" class="anchor" href="#from-source"><span class="octicon octicon-link"></span></a>From source</h3>
+
+<div class="highlight highlight-sh"><pre>git clone https://github.com/pluma/sixportify.git
+<span class="nb">cd </span>sixportify
+npm install
+</pre></div>
+
+<h1>
+<a name="basic-usage-example" class="anchor" href="#basic-usage-example"><span class="octicon octicon-link"></span></a>Basic usage example</h1>
+
+<h2>
+<a name="somelibjs" class="anchor" href="#somelibjs"><span class="octicon octicon-link"></span></a>somelib.js</h2>
+
+<div class="highlight highlight-javascript"><pre><span class="kr">export</span> <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span> <span class="mi">4</span><span class="p">};</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">addX</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">config</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>
+<a name="indexjs" class="anchor" href="#indexjs"><span class="octicon octicon-link"></span></a>index.js</h2>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">somelib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./somelib.js'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">somelib</span><span class="p">.</span><span class="nx">addX</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// 5</span>
+<span class="nx">somelib</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">somelib</span><span class="p">.</span><span class="nx">addX</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// 3</span>
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">browserify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'browserify'</span><span class="p">),</span>
+    <span class="nx">sixportify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'sixportify'</span><span class="p">),</span>
+    <span class="nx">b</span> <span class="o">=</span> <span class="nx">browserify</span><span class="p">();</span>
+
+<span class="nx">b</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">sixportify</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'./index.js'</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">bundle</span><span class="p">().</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">).</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="s1">'bundle.js'</span><span class="p">));</span>
+</pre></div>
+
+<h1>
+<a name="usage-example-with-es6ify" class="anchor" href="#usage-example-with-es6ify"><span class="octicon octicon-link"></span></a>Usage example with <code>es6ify</code>
+</h1>
+
+<h2>
+<a name="somelibjs-1" class="anchor" href="#somelibjs-1"><span class="octicon octicon-link"></span></a>somelib.js</h2>
+
+<div class="highlight highlight-javascript"><pre><span class="kr">const</span> <span class="nx">BAR</span> <span class="o">=</span> <span class="s2">"Hello World!"</span><span class="p">;</span>
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">Foo</span> <span class="p">{</span>
+    <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">BAR</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>
+<a name="indexjs-1" class="anchor" href="#indexjs-1"><span class="octicon octicon-link"></span></a>index.js</h2>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="p">{</span><span class="nx">Foo</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./somelib.js'</span><span class="p">);</span>
+<span class="p">(</span><span class="k">new</span> <span class="nx">Foo</span><span class="p">()).</span><span class="nx">greet</span><span class="p">();</span> <span class="c1">// "Hello World!"</span>
+</pre></div>
+
+<h2>
+<a name="usage-1" class="anchor" href="#usage-1"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">browserify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'browserify'</span><span class="p">),</span>
+    <span class="nx">siportify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'sixportify'</span><span class="p">),</span>
+    <span class="nx">es6ify</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'es6ify'</span><span class="p">),</span>
+    <span class="nx">b</span> <span class="o">=</span> <span class="nx">browserify</span><span class="p">();</span>
+
+<span class="nx">b</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">sixportify</span><span class="p">);</span> <span class="c1">// should always come before es6ify</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">es6ify</span><span class="p">.</span><span class="nx">runtime</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">es6ify</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">'./index.js'</span><span class="p">);</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">bundle</span><span class="p">().</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">).</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="s1">'bundle.js'</span><span class="p">));</span>
+</pre></div>
+
+<h1>
+<a name="caveats" class="anchor" href="#caveats"><span class="octicon octicon-link"></span></a>Caveats</h1>
+
+<p>The implementation is incredibly naïve.</p>
+
+<p>If your export statements are not at the beginning of the line (optionally indented with any whitespace character), <code>sixportify</code> won't find them:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// This won't work.</span>
+<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">;</span> <span class="kr">export</span> <span class="kd">var</span> <span class="nx">baz</span> <span class="o">=</span> <span class="s1">'qux'</span><span class="p">;</span>
+
+<span class="c1">// This won't work either.</span>
+<span class="kr">export</span> <span class="kd">var</span>
+    <span class="nx">foo</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">;</span>
+
+<span class="c1">// Nor will this.</span>
+<span class="kr">export</span> <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">,</span>
+    <span class="nx">qux</span> <span class="o">=</span> <span class="s1">'baz'</span><span class="p">;</span> <span class="c1">// `qux` will not be exported!</span>
+
+<span class="c1">// This is fine, though:</span>
+<span class="kr">export</span> <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'bar'</span><span class="o">:</span> <span class="s1">'qux'</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>While <code>sixportify</code> works just fine with variable declarations,
+keep in mind that re-assignment may have unintended consequences. E.g.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kr">export</span> <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">;</span>
+<span class="nx">foo</span> <span class="o">=</span> <span class="s1">'qux'</span><span class="p">;</span>
+</pre></div>
+
+<p>In this case the value that will actually be exported as <code>exports.foo</code>
+will be <code>"qux"</code>, not <code>"bar"</code>.</p>
+
+<p>You should therefore treat exported <code>var</code> declarations as constants.</p>
+
+<p>Likewise, the following will not work as intended:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// in somelib.js</span>
+<span class="kr">export</span> <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="s1">'bar'</span><span class="p">;</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Hello, '</span> <span class="o">+</span> <span class="nx">foo</span> <span class="o">+</span> <span class="s1">'!'</span><span class="p">);</span> <span class="c1">// still refers to the local var</span>
+<span class="p">}</span>
+
+<span class="c1">// in index.js</span>
+<span class="kd">var</span> <span class="nx">somelib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./somelib.js'</span><span class="p">);</span>
+<span class="nx">somelib</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="s1">'world'</span><span class="p">;</span> <span class="c1">// re-assigns the exported var</span>
+<span class="nx">somelib</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span> <span class="c1">// "Hello bar!"</span>
+</pre></div>
+
+<h1>
+<a name="es6harmony-let-const-generators-and-classes" class="anchor" href="#es6harmony-let-const-generators-and-classes"><span class="octicon octicon-link"></span></a>ES6/harmony, let, const, generators and classes</h1>
+
+<p>If you want to use <code>sixportify</code> with ES6-style classes, you can do that:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// in somelib.es6</span>
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">Foo</span> <span class="p">{</span>
+    <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'sup'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// in index.es6</span>
+<span class="kd">var</span> <span class="nx">Foo</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./somelib.es6'</span><span class="p">).</span><span class="nx">Foo</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
+<span class="nx">foo</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span> <span class="c1">// "sup"</span>
+</pre></div>
+
+<p>Generators (<code>function*</code>) as well as variables declared with <code>let</code> or <code>const</code>
+are fully supported too (even though the latter two shouldn't really be exportable according to harmony -- if the runtime supports it, <code>sixportify</code> won't judge you).</p>
+
+<p>This means you can use sixportify to preprocess your ES6-style exports for <a href="https://github.com/thlorenz/es6ify">es6ify</a>.</p>
+
+<p>Keep in mind that <code>sixportify</code> does not understand decomposition, so the following will not work:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// BROKEN!</span>
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'foo'</span><span class="o">:</span> <span class="s1">'bar'</span><span class="p">};</span>
+<span class="kr">export</span> <span class="kd">var</span> <span class="p">{</span><span class="nx">foo</span><span class="p">}</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
+<span class="c1">// ALSO BROKEN!</span>
+<span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'hello'</span><span class="p">];</span>
+<span class="kr">export</span> <span class="kd">var</span> <span class="p">[</span><span class="nx">qux</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">;</span>
+</pre></div>
+
+<h1>
+<a name="unlicense" class="anchor" href="#unlicense"><span class="octicon octicon-link"></span></a>Unlicense</h1>
+
+<p>This is free and unencumbered public domain software. For more information, see <a href="http://unlicense.org/">http://unlicense.org/</a> or the accompanying <a href="https://github.com/pluma/sixportify/blob/master/UNLICENSE">UNLICENSE</a> file.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">sixportify maintained by <a href="https://github.com/pluma">pluma</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
